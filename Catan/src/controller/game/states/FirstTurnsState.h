@@ -7,5 +7,5 @@
 class FirstTurnsState : CatanState
 {
 public:
-	virtual CatanEvent* handle(CatanGame& catanGame, CatanEvent catanEvent);
+	virtual CatanState* handle(CatanGame& catanGame, CatanEvent catanEvent);
 };

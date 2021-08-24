@@ -2,6 +2,8 @@
 
 #include "..\..\events\CatanEvent.h"
 
+class CatanGame;
+
 class CatanState
 {
 public:

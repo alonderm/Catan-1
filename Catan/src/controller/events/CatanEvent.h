@@ -1,6 +1,6 @@
 #pragma once
 
-#include "..\game\CatanGame.h"
+#include "..\game\Player.h"
 
 enum Events : int {BUILD_SETTLEMENT, BUILD_ROAD, MOVE_ROBBER};
 
@@ -11,7 +11,7 @@ class CatanEvent
 public:
 	PlayerId getPlayerId();
 	void setPlayerId(PlayerId playerId);
-	Events getEvent();
+	Events getEvent(); // No override methods allowed.
 
 private:
 	PlayerId playerId;
