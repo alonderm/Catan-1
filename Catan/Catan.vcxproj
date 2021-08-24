@@ -140,11 +140,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\controller\events\CatanEvent.h" />
+    <ClInclude Include="src\controller\game\CatanBoard.h" />
     <ClInclude Include="src\controller\game\CatanGame.h" />
     <ClInclude Include="src\controller\game\Player.h" />
+    <ClInclude Include="src\controller\game\states\CatanState.h" />
+    <ClInclude Include="src\controller\game\states\FirstTurnsState.h" />
+    <ClInclude Include="src\model\temp_data\CatanData.h" />
+    <ClInclude Include="src\model\temp_data\EdgeData.h" />
+    <ClInclude Include="src\model\temp_data\HexData.h" />
+    <ClInclude Include="src\model\temp_data\VertexData.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\controller\events\CatanEvent.cpp" />
+    <ClCompile Include="src\controller\game\CatanBoard.cpp" />
+    <ClCompile Include="src\controller\game\CatanGame.cpp" />
+    <ClCompile Include="src\controller\game\states\FirstTurnsState.cpp" />
+    <ClCompile Include="src\controller\game\states\Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
