@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31313.79
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Catan", "Catan\Catan.vcxproj", "{F6D528A1-7ACB-4DD2-A80D-580FC64B5CF4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest_catan", "UnitTest_catan\UnitTest_catan.vcxproj", "{A2D29648-C72C-4E73-92BE-85A2BC2C37A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{F6D528A1-7ACB-4DD2-A80D-580FC64B5CF4}.Release|x64.Build.0 = Release|x64
 		{F6D528A1-7ACB-4DD2-A80D-580FC64B5CF4}.Release|x86.ActiveCfg = Release|Win32
 		{F6D528A1-7ACB-4DD2-A80D-580FC64B5CF4}.Release|x86.Build.0 = Release|Win32
+		{A2D29648-C72C-4E73-92BE-85A2BC2C37A3}.Debug|x64.ActiveCfg = Debug|x64
+		{A2D29648-C72C-4E73-92BE-85A2BC2C37A3}.Debug|x64.Build.0 = Debug|x64
+		{A2D29648-C72C-4E73-92BE-85A2BC2C37A3}.Debug|x86.ActiveCfg = Debug|Win32
+		{A2D29648-C72C-4E73-92BE-85A2BC2C37A3}.Debug|x86.Build.0 = Debug|Win32
+		{A2D29648-C72C-4E73-92BE-85A2BC2C37A3}.Release|x64.ActiveCfg = Release|x64
+		{A2D29648-C72C-4E73-92BE-85A2BC2C37A3}.Release|x64.Build.0 = Release|x64
+		{A2D29648-C72C-4E73-92BE-85A2BC2C37A3}.Release|x86.ActiveCfg = Release|Win32
+		{A2D29648-C72C-4E73-92BE-85A2BC2C37A3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

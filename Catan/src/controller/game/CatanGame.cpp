@@ -21,3 +21,14 @@ PlayerId CatanGame::getturn()
 {
 	return this->turn;
 }
+
+void CatanGame::setup_board(CatanBoard& _board)
+{
+	this->board = _board;
+}
+
+bool build_settlement(PlayerId _PlayerId, unsigned int _q, unsigned int _r, VertexData::VertexDir _direction)
+{
+	return false;
+}
+

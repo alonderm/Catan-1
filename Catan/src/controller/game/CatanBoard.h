@@ -9,7 +9,7 @@ class CatanBoard
 {
 public:
 	void init();
-
+	bool validate_hexes(int q, int r);
 private:
 	HexData* hexMap[7][7];
 	VertexData* vertexMap[7][7][2];

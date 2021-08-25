@@ -1,5 +1,6 @@
 #include "FirstTurnsState.h"
 #include "..\..\events\CatanEvent.h"
+#include "..\..\game\CatanBoard.h"
 
 CatanState* FirstTurnsState::handle(CatanGame& catanGame, CatanEvent catanEvent)
 {
