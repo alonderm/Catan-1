@@ -12,6 +12,9 @@ class CatanGame
 {
 public:
 	void handleEvent(CatanEvent event);
+	PlayerId getPlayerCount();
+	PlayerId getturn();
+
 
 private:
 	PlayerId playerCount;
