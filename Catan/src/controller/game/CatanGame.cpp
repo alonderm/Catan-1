@@ -11,3 +11,13 @@ void CatanGame::handleEvent(CatanEvent catanEvent)
 	}
 
 }
+
+PlayerId CatanGame::getPlayerCount()
+{
+	return this->playerCount;
+}
+
+PlayerId CatanGame::getturn()
+{
+	return this->turn;
+}

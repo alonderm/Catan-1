@@ -2,7 +2,7 @@
 
 #include "..\game\Player.h"
 
-enum Events : int {BUILD_SETTLEMENT, BUILD_ROAD, MOVE_ROBBER};
+enum class Events : int {BUILD_SETTLEMENT, BUILD_ROAD, MOVE_ROBBER};
 
 enum class Source : int {GUI, SERVER};
 

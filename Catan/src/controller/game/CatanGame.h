@@ -17,7 +17,7 @@ public:
 
 
 private:
-	PlayerId playerCount;
+	PlayerId playerCount;	// In example : for 4-players game, playerCount = PLAYER_FOUR
 	PlayerId turn;
 	std::list<Player> playerList;
 	CatanState* state;
