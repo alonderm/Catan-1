@@ -17,7 +17,7 @@ public:
 	PlayerId getPlayerCount();
 	PlayerId getturn();
 	void setup_board(CatanBoard& _board);
-	bool build_settlement(PlayerId _PlayerId, unsigned int _q, unsigned int _r, VertexData::VertexDir _direction);
+	bool build_settlement(PlayerId PlayerId, unsigned int q, unsigned int r, VertexData::VertexDir direction);
 
 
 private:

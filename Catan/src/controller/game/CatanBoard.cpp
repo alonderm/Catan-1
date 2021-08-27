@@ -128,7 +128,13 @@ void CatanBoard::init()
 	}
 
 	
+	
 
 	// TODO: delete unneccesary data from the maps and set it to NULL.
+}
+
+VertexData* CatanBoard::get_VertexData(int q, int r, VertexData::VertexDir dir)
+{
+	return this->vertexMap[q][r][dir];
 }
 
