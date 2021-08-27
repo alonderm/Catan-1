@@ -47,45 +47,87 @@ void CatanBoard::init()
 	}
 
 
-	// deleting all unnecessary vertexes
+	// deleting all unnecessary vertexes & edges
 	for (int q = 0, r = 3; q < 4 && r <= 0; q++, r--)
 	{
 		delete this->vertexMap[q][r][VertexData::N];
 		this->vertexMap[q][r][VertexData::N] = NULL;
+
+		delete this->edgeMap[q][r][EdgeData::NE];
+		this->edgeMap[q][r][EdgeData::NE] = NULL;
+		delete this->edgeMap[q][r][EdgeData::NW];
+		this->edgeMap[q][r][EdgeData::NW] = NULL;
+		delete this->edgeMap[q][r][EdgeData::W];
+		this->edgeMap[q][r][EdgeData::W] = NULL;
 	}
 
-	for (int q = 3, r = 0; q <= 6 ; q++)
+	for (int q = 4, r = 0; q <= 6 ; q++)
 	{
 		delete this->vertexMap[q][r][VertexData::N];
 		this->vertexMap[q][r][VertexData::N] = NULL;
+
+		delete this->edgeMap[q][r][EdgeData::NE];
+		this->edgeMap[q][r][EdgeData::NE] = NULL;
+		delete this->edgeMap[q][r][EdgeData::NW];
+		this->edgeMap[q][r][EdgeData::NW] = NULL;
+		delete this->edgeMap[q][r][EdgeData::W];
+		this->edgeMap[q][r][EdgeData::W] = NULL;
 	}
 
-	for (int q = 6, r = 0; r <= 3; r++)
+	for (int q = 6, r = 1; r <= 3; r++)
 	{
 		delete this->vertexMap[q][r][VertexData::N];
 		this->vertexMap[q][r][VertexData::N] = NULL;
+
+		delete this->edgeMap[q][r][EdgeData::NE];
+		this->edgeMap[q][r][EdgeData::NE] = NULL;
+		delete this->edgeMap[q][r][EdgeData::NW];
+		this->edgeMap[q][r][EdgeData::NW] = NULL;
+
 	}
 
-	for (int q = 6, r = 3; q >= 3 && r <= 6; q--, r++)
+	for (int q = 5, r = 4; q >= 3 && r <= 6; q--, r++)
 	{
 		delete this->vertexMap[q][r][VertexData::S];
 		this->vertexMap[q][r][VertexData::S] = NULL;
+
+		delete this->edgeMap[q][r][EdgeData::NE];
+		this->edgeMap[q][r][EdgeData::NE] = NULL;
+		if (q == 3 && r == 6)
+		{
+			delete this->edgeMap[q][r][EdgeData::W];
+			this->edgeMap[q][r][EdgeData::W] = NULL;
+		}
 	}
 
-	for (int q = 3, r = 6; q >= 0; q--)
+	for (int q = 2, r = 6; q >= 0; q--)
 	{
 		delete this->vertexMap[q][r][VertexData::S];
 		this->vertexMap[q][r][VertexData::S] = NULL;
+
+		delete this->edgeMap[q][r][EdgeData::W];
+		this->edgeMap[q][r][EdgeData::W] = NULL;
+
+		if (q == 0)
+		{
+			delete this->edgeMap[q][r][EdgeData::NW];
+			this->edgeMap[q][r][EdgeData::NW] = NULL;
+		}
 	}
 
-	for (int q = 0, r = 6; r >= 3; r--)
+	for (int q = 0, r = 5; r >= 4; r--)
 	{
 		delete this->vertexMap[q][r][VertexData::S];
 		this->vertexMap[q][r][VertexData::S] = NULL;
+
+		delete this->edgeMap[q][r][EdgeData::NW];
+		this->edgeMap[q][r][EdgeData::NW] = NULL;
+		delete this->edgeMap[q][r][EdgeData::W];
+		this->edgeMap[q][r][EdgeData::W] = NULL;
+
 	}
 
-
-
+	
 
 	// TODO: delete unneccesary data from the maps and set it to NULL.
 }
