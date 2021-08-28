@@ -18,6 +18,11 @@ public:
 		this->player_id = _playerid;
 	}
 
+	Building get_Building()
+	{
+		return this->building;
+	}
+
 public:
 	int q;
 	int r;

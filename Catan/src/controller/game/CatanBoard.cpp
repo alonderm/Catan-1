@@ -4,7 +4,7 @@
 
 bool CatanBoard::validate_hexes(int q, int r)
 {
-	if (q + r < 3 || q + r > 9)
+	if ((q + r) < 3 || (q + r) > 9)
 	{
 		return false;
 	}
@@ -47,8 +47,8 @@ void CatanBoard::init()
 	}
 
 
-	// deleting all unnecessary vertexes & edges
-	for (int q = 0, r = 3; q < 4 && r <= 0; q++, r--)
+	 //deleting all unnecessary vertexes & edges
+	for (int q = 0, r = 3; q < 4 && r >= 0; q++, r--)
 	{
 		delete this->vertexMap[q][r][VertexData::N];
 		this->vertexMap[q][r][VertexData::N] = NULL;

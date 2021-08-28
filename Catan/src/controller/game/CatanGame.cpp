@@ -31,26 +31,34 @@ void CatanGame::setup_board(CatanBoard& _board)
 bool CatanGame::build_settlement(PlayerId PlayerId, unsigned int q, unsigned int r, VertexData::VertexDir direction)
 {
 	VertexData* vertex_pointer;
-	if ((q >= 0 && q <= 6) && (r >= 0 && r <= 6)) //checking if the q and r values are valid
+	if (PlayerId == this->turn)
 	{
-		if (board.validate_hexes(q, r)) //checking if the given hex(q,r) exists
+		if ((q >= 0 && q <= 6) && (r >= 0 && r <= 6)) //checking if the q and r values are valid
 		{
-			vertex_pointer = board.get_VertexData(q, r, direction);
-			if (!(vertex_pointer == NULL)) //checking if the given vertex(q,r,direction) exists
+			if (board.validate_hexes(q, r)) //checking if the given hex(q,r) exists
 			{
-				if (vertex_pointer->building == VertexData::Building::NONE) // if the vertex is clear of any settlement/city
+				vertex_pointer = board.get_VertexData(q, r, direction);
+				if (!(vertex_pointer == NULL)) //checking if the given vertex(q,r,direction) exists
 				{
-					vertex_pointer->setBuilding(PlayerId, VertexData::Building::SETTLEMENT); //build the settlement in the given coordinates
-					return true;
+					if (vertex_pointer->building == VertexData::Building::NONE) // if the vertex is clear of any settlement/city
+					{
+						vertex_pointer->setBuilding(PlayerId, VertexData::Building::SETTLEMENT); //build the settlement in the given coordinates
+						return true;
+					}
+
 				}
 
 			}
 
 		}
-
 	}
-
+	
 	return false;
 
 }
 
+CatanGame::CatanGame(CatanBoard& _board, PlayerId _playerCount):board(_board),playerCount(_playerCount)
+{
+	this->turn = PlayerId::PLAYER_ONE;
+
+}

@@ -7,6 +7,7 @@ CatanState* FirstTurnsState::handle(CatanGame& catanGame, CatanEvent catanEvent)
 	
 	if (catanGame.getturn() == catanGame.getPlayerCount())
 	{
+		
 		return NULL;
 	}
 
