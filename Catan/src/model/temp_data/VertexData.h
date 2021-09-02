@@ -23,7 +23,8 @@ public:
 		return this->building;
 	}
 
-public:
+
+private:
 	int q;
 	int r;
 	VertexDir vertexDir;

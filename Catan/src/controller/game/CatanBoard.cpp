@@ -133,8 +133,14 @@ void CatanBoard::init()
 	// TODO: delete unneccesary data from the maps and set it to NULL.
 }
 
+//returns the pointer to a specific vertex on the game board
 VertexData* CatanBoard::get_VertexData(int q, int r, VertexData::VertexDir dir)
 {
 	return this->vertexMap[q][r][dir];
 }
 
+//returns the pointer to a specific edge on the game board
+EdgeData* CatanBoard::get_EdgeData(int q, int r, EdgeData::EdgeDir dir)
+{
+	return this->edgeMap[q][r][dir];
+}

@@ -15,13 +15,14 @@ class CatanGame
 public:
 	//Constructors:
 	CatanGame(CatanBoard& _board, PlayerId _playerCount); // 'turn' will always start at PLAYER_ONE, 'playerList' is determined according to..
-														  // 'PlayerCount' and 'state' always starts as pointer to 'FirstTurnState' instance.
+														  // 'PlayerCount' and 'state' always starts as a pointer to 'FirstTurnState' instance.
 
 	void handleEvent(CatanEvent event);
 	PlayerId getPlayerCount();
 	PlayerId getturn();
 	void setup_board(CatanBoard& _board);
 	bool build_settlement(PlayerId PlayerId, unsigned int q, unsigned int r, VertexData::VertexDir direction);
+	bool build_road(PlayerId PlayerId, unsigned int q, unsigned int r, EdgeData::EdgeDir direction);
 	CatanBoard& get_board()
 	{
 		return this->board;

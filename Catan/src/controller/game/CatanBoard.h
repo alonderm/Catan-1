@@ -11,6 +11,7 @@ public:
 	void init();
 	bool validate_hexes(int q, int r);
 	VertexData* get_VertexData(int q, int r, VertexData::VertexDir dir);
+	EdgeData* get_EdgeData(int q, int r, EdgeData::EdgeDir dir);
 
 private:
 	HexData* hexMap[7][7];
