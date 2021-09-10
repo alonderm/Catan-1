@@ -45,6 +45,12 @@
     <ClInclude Include="src\model\temp_data\VertexData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\controller\events\BuildSettlementEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\controller\events\BuildRoadEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\controller\events\CatanEvent.cpp">
@@ -60,6 +66,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\controller\game\CatanGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\controller\events\BuildSettlementEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\controller\events\BuildRoadEvent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

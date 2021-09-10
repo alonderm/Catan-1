@@ -20,6 +20,8 @@ public:
 	void handleEvent(CatanEvent event);
 	PlayerId getPlayerCount();
 	PlayerId getturn();
+	void increment_turn();
+	void decrement_turn();
 	void setup_board(CatanBoard& _board);
 	bool build_settlement(PlayerId PlayerId, unsigned int q, unsigned int r, VertexData::VertexDir direction);
 	bool build_road(PlayerId PlayerId, unsigned int q, unsigned int r, EdgeData::EdgeDir direction);

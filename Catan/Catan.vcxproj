@@ -139,6 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\controller\events\BuildRoadEvent.h" />
+    <ClInclude Include="src\controller\events\BuildSettlementEvent.h" />
     <ClInclude Include="src\controller\events\CatanEvent.h" />
     <ClInclude Include="src\controller\game\CatanBoard.h" />
     <ClInclude Include="src\controller\game\CatanGame.h" />
@@ -151,6 +153,8 @@
     <ClInclude Include="src\model\temp_data\VertexData.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\controller\events\BuildRoadEvent.cpp" />
+    <ClCompile Include="src\controller\events\BuildSettlementEvent.cpp" />
     <ClCompile Include="src\controller\events\CatanEvent.cpp" />
     <ClCompile Include="src\controller\game\CatanBoard.cpp" />
     <ClCompile Include="src\controller\game\CatanGame.cpp" />

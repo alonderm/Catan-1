@@ -144,3 +144,62 @@ EdgeData* CatanBoard::get_EdgeData(int q, int r, EdgeData::EdgeDir dir)
 {
 	return this->edgeMap[q][r][dir];
 }
+
+
+bool CatanBoard::build_settlement(PlayerId playerid, unsigned int q, unsigned int r, VertexData::VertexDir direction,PlayerId turn)
+{
+	VertexData* vertex_pointer;
+	if (playerid == turn)
+	{
+		if ((q >= 0 && q <= 6) && (r >= 0 && r <= 6)) //checking if the q and r values are valid
+		{
+			if (this->validate_hexes(q, r)) //checking if the given hex(q,r) exists
+			{
+				vertex_pointer = this->get_VertexData(q, r, direction);
+				if (!(vertex_pointer == NULL)) //checking if the given vertex(q,r,direction) exists
+				{
+					if (vertex_pointer->get_Building() == VertexData::Building::NONE) // if the vertex is clear of any settlement/city
+					{
+						vertex_pointer->setBuilding(playerid, VertexData::Building::SETTLEMENT); //build the settlement in the given coordinates
+						return true;
+					}
+
+				}
+
+			}
+
+		}
+	}
+
+	return false;
+}
+
+
+bool CatanBoard::build_road(PlayerId playerid, unsigned int q, unsigned int r, EdgeData::EdgeDir direction,PlayerId turn)
+{
+	EdgeData* edge_pointer;
+	if (playerid == turn)
+	{
+		if ((q >= 0 && q <= 6) && (r >= 0 && r <= 6)) //checking if the q and r values are valid
+		{
+			if (this->validate_hexes(q, r)) //checking if the given hex(q,r) exists
+			{
+				edge_pointer = this->get_EdgeData(q, r, direction);
+				if (!(edge_pointer == NULL)) //checking if the given vertex(q,r,direction) exists
+				{
+					if (edge_pointer->get_path() == EdgeData::Path::DIRT) // if the edge is clear(no road is built on it)
+					{
+						edge_pointer->set_path(playerid, EdgeData::Path::ROAD); //build the road in the given coordinates
+						return true;
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+	return false;
+}

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CatanData.h"
-#include "Player.h"
+#include "../../controller/game/Player.h"
 
 class VertexData : CatanData
 {
