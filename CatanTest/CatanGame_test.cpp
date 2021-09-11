@@ -88,8 +88,8 @@ namespace CatanTest
 		TEST_METHOD(build_road_subtest3)
 		{
 
-			Assert::AreEqual(true, test_game->build_road(PlayerId::PLAYER_ONE, 2, 3, EdgeData::EdgeDir::NW)); // turn = PLAYER_ONE
-			Assert::AreEqual(int(EdgeData::Path::ROAD), int(test_game->get_board().get_EdgeData(2, 3, EdgeData::EdgeDir::NW)->get_path()));
+			Assert::AreEqual(false, test_game->build_road(PlayerId::PLAYER_ONE, 2, 3, EdgeData::EdgeDir::NW)); // turn = PLAYER_ONE
+			Assert::AreEqual(int(EdgeData::Path::DIRT), int(test_game->get_board().get_EdgeData(2, 3, EdgeData::EdgeDir::NW)->get_path()));
 
 		}
 

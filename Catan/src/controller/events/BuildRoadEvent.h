@@ -4,7 +4,7 @@
 #include "CatanEvent.h"
 #include "..\..\model\temp_data\EdgeData.h"
 
-class BuildRoadEvent : CatanEvent
+class BuildRoadEvent : public CatanEvent
 {
 public:
 	//constructor of 'BuildSettlementEvent', also initializes the fields inherited from 'CatanEvent'

@@ -23,6 +23,10 @@ public:
 		return this->building;
 	}
 
+	PlayerId get_Player()
+	{
+		return this->player_id;
+	}
 
 private:
 	int q;

@@ -4,7 +4,7 @@
 #include "CatanEvent.h"
 #include "..\..\model\temp_data\VertexData.h"
 
-class BuildSettlementEvent : CatanEvent
+class BuildSettlementEvent : public CatanEvent
 {
 
 

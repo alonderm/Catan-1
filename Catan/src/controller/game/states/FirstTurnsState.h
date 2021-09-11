@@ -4,10 +4,10 @@
 #include "..\CatanGame.h"
 #include "..\..\events\CatanEvent.h"
 
-class FirstTurnsState : CatanState
+class FirstTurnsState : public CatanState
 {
 public:
-	virtual CatanState* handle(CatanGame& catanGame, CatanEvent catanEvent);
+	virtual CatanState* handle(CatanGame& catanGame, CatanEvent& catanEvent);
 
 private:
 	int buildings_hist[6] = { 0,0,0,0,0,0 }; // histogram thats holds the amount of buildings each player has built

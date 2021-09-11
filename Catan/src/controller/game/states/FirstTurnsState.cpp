@@ -4,7 +4,7 @@
 #include "..\..\events\BuildRoadEvent.h"
 #include "..\..\events\BuildSettlementEvent.h"
 
-CatanState* FirstTurnsState::handle(CatanGame& catanGame, CatanEvent catanEvent)
+CatanState* FirstTurnsState::handle(CatanGame& catanGame, CatanEvent& catanEvent)
 {
 	
 	if (catanGame.getturn() == catanEvent.getPlayerId()) //if a player is trying to build on his turn
@@ -15,9 +15,9 @@ CatanState* FirstTurnsState::handle(CatanGame& catanGame, CatanEvent catanEvent)
 				if (this->buildings_hist[int(catanEvent.getPlayerId())] < 2) //if the player has not built 2 settlements yet
 				{
 					BuildSettlementEvent& settlement_event = (BuildSettlementEvent&)catanEvent; //settlement_event is now casted to be of type 'BuildSettlementEvent'
-					if (catanGame.build_settlement(catanEvent.getPlayerId(), settlement_event.get_q(), settlement_event.get_r(), settlement_event.get_dir()))
+					if (catanGame.build_settlement(settlement_event.getPlayerId(), settlement_event.get_q(), settlement_event.get_r(), settlement_event.get_dir()))
 					{
-						this->buildings_hist[int(catanEvent.getPlayerId())]++; //updates the amount of settlements the player has built
+						this->buildings_hist[int(settlement_event.getPlayerId())]++; //updates the amount of settlements the player has built
 						
 					}
 
@@ -37,22 +37,25 @@ CatanState* FirstTurnsState::handle(CatanGame& catanGame, CatanEvent catanEvent)
 						this->roads_hist[int(catanEvent.getPlayerId())]++; //updates the amount of roads the player has built
 						if (this->buildings_hist[int(catanEvent.getPlayerId())] == 2 && this->roads_hist[int(catanEvent.getPlayerId())] == 2) // if its the last road that the player should build
 						{
-							if (catanGame.getPlayerCount() == catanEvent.getPlayerId()) //if its the last road of the last player
-							{
-								catanGame.decrement_turn(); //start the reverse turns
-							}
 
 							if (catanGame.getturn() == PlayerId::PLAYER_ONE) //if its the last road of the first player
 							{
 								// return "next_State" , TODO: add the next state 
-								return NULL; //temporary only
+								printf("check!"); //temporary only!!!
+								return NULL; //temporary only!!!
+								
 							}
 
 						}
 
-						if (!(catanGame.getPlayerCount() == catanEvent.getPlayerId())) //if its not the turn of the last player
+						if (this->roads_hist[int(catanGame.getPlayerCount())] == 2) // if the turns are reversed after the last player has built 2 settlements and roads
 						{
-							catanGame.increment_turn(); //move on to the next turn
+							catanGame.decrement_turn(); // move to the turn of the previous player in queue
+						}
+
+						else if(!(catanGame.getPlayerCount() == catanEvent.getPlayerId()))
+						{
+							catanGame.increment_turn(); //move on to the turn of the next player in queue
 						}
 
 

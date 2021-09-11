@@ -145,7 +145,7 @@ EdgeData* CatanBoard::get_EdgeData(int q, int r, EdgeData::EdgeDir dir)
 	return this->edgeMap[q][r][dir];
 }
 
-
+//builds a settlement on the catan board
 bool CatanBoard::build_settlement(PlayerId playerid, unsigned int q, unsigned int r, VertexData::VertexDir direction,PlayerId turn)
 {
 	VertexData* vertex_pointer;
@@ -160,8 +160,13 @@ bool CatanBoard::build_settlement(PlayerId playerid, unsigned int q, unsigned in
 				{
 					if (vertex_pointer->get_Building() == VertexData::Building::NONE) // if the vertex is clear of any settlement/city
 					{
-						vertex_pointer->setBuilding(playerid, VertexData::Building::SETTLEMENT); //build the settlement in the given coordinates
-						return true;
+						if (CheckNeighbors(playerid, q, r, direction))
+						{
+							//TODO: check if there is a road attached,that started from another settlement/city(unless STATE = FirstTurnState)
+							vertex_pointer->setBuilding(playerid, VertexData::Building::SETTLEMENT); //build the settlement in the given coordinates
+							return true;
+						}
+						
 					}
 
 				}
@@ -174,7 +179,7 @@ bool CatanBoard::build_settlement(PlayerId playerid, unsigned int q, unsigned in
 	return false;
 }
 
-
+//builds a road on the catan board
 bool CatanBoard::build_road(PlayerId playerid, unsigned int q, unsigned int r, EdgeData::EdgeDir direction,PlayerId turn)
 {
 	EdgeData* edge_pointer;
@@ -185,12 +190,16 @@ bool CatanBoard::build_road(PlayerId playerid, unsigned int q, unsigned int r, E
 			if (this->validate_hexes(q, r)) //checking if the given hex(q,r) exists
 			{
 				edge_pointer = this->get_EdgeData(q, r, direction);
-				if (!(edge_pointer == NULL)) //checking if the given vertex(q,r,direction) exists
+				if (!(edge_pointer == NULL)) //checking if the given edge(q,r,direction) exists
 				{
 					if (edge_pointer->get_path() == EdgeData::Path::DIRT) // if the edge is clear(no road is built on it)
 					{
-						edge_pointer->set_path(playerid, EdgeData::Path::ROAD); //build the road in the given coordinates
-						return true;
+						if (FindSettlement(playerid, q, r, direction))
+						{
+							edge_pointer->set_path(playerid, EdgeData::Path::ROAD); //build the road in the given coordinates
+							return true;
+						}
+						
 					}
 
 				}
@@ -203,3 +212,128 @@ bool CatanBoard::build_road(PlayerId playerid, unsigned int q, unsigned int r, E
 
 	return false;
 }
+
+// searches for a nearby settlement/city so that the player can attach a road to it(true - found one,false - no nearby settlement)
+bool CatanBoard::FindSettlement(PlayerId playerid, unsigned int q, unsigned int r, EdgeData::EdgeDir direction)
+{
+	//please refer to "https://www.redblobgames.com/grids/parts/" for further explanation
+
+	VertexData* VertexOne = this->get_VertexData(q-1, r+1, VertexData::VertexDir::N);
+	VertexData* VertexTwo = this->get_VertexData(q, r-1, VertexData::VertexDir::S);
+	VertexData* VertexThree = this->get_VertexData(q, r, VertexData::VertexDir::N);
+	VertexData* VertexFour = this->get_VertexData(q+1, r-1, VertexData::VertexDir::S);
+	bool valid_flag = false;
+	
+	if (VertexOne)
+	{
+		if (!(VertexOne->get_Building() == VertexData::Building::NONE) && (VertexOne->get_Player() == playerid) && (direction == EdgeData::EdgeDir::W))
+		{
+			valid_flag = true;
+		}
+	}
+	
+	if (VertexTwo)
+	{
+		if (!(VertexTwo->get_Building() == VertexData::Building::NONE) && (VertexTwo->get_Player() == playerid) && (direction == EdgeData::EdgeDir::W || direction == EdgeData::EdgeDir::NW))
+		{
+			valid_flag = true;
+		}
+	}
+	
+	if (VertexThree)
+	{
+		if (!(VertexThree->get_Building() == VertexData::Building::NONE) && (VertexThree->get_Player() == playerid) && (direction == EdgeData::EdgeDir::NW || direction == EdgeData::EdgeDir::NE))
+		{
+			valid_flag = true;
+		}
+	}
+	
+	if (VertexFour)
+	{
+		if (!(VertexFour->get_Building() == VertexData::Building::NONE) && (VertexFour->get_Player() == playerid) && direction == EdgeData::EdgeDir::NE)
+		{
+			valid_flag = true;
+		}
+	}
+	
+	return valid_flag;
+}
+
+//checks if the adjacent vertexes are clear of any buildings
+bool CatanBoard::CheckNeighbors(PlayerId playerid, unsigned int q, unsigned int r, VertexData::VertexDir direction)
+{
+	//please refer to "https://www.redblobgames.com/grids/parts/" for further explanation
+
+	//vertexes adjacent to the north
+	VertexData* VertexOne = this->get_VertexData(q , r - 1, VertexData::VertexDir::S);
+	VertexData* VertexTwo = this->get_VertexData(q + 1, r - 2, VertexData::VertexDir::S);
+	VertexData* VertexThree = this->get_VertexData(q + 1, r - 1, VertexData::VertexDir::S);
+
+	//vertexes adjacent to the south
+	VertexData* VertexFour = this->get_VertexData(q - 1, r + 1, VertexData::VertexDir::N);
+	VertexData* VertexFive = this->get_VertexData(q - 1, r + 2, VertexData::VertexDir::N);
+	VertexData* VertexSix = this->get_VertexData(q, r + 1, VertexData::VertexDir::N);
+
+	if (direction == VertexData::VertexDir::N)
+	{
+		if (VertexOne)
+		{
+			if (!(VertexOne->get_Building() == VertexData::Building::NONE))
+			{
+				return false;
+			}
+		}
+		
+		if (VertexTwo)
+		{
+			if (!(VertexTwo->get_Building() == VertexData::Building::NONE))
+			{
+				return false;
+			}
+		}
+
+		if (VertexThree)
+		{
+			if (!(VertexThree->get_Building() == VertexData::Building::NONE))
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	if (direction == VertexData::VertexDir::S)
+	{
+		if (VertexFour)
+		{
+			if (!(VertexFour->get_Building() == VertexData::Building::NONE))
+			{
+				return false;
+			}
+		}
+
+		if (VertexFive)
+		{
+			if (!(VertexFive->get_Building() == VertexData::Building::NONE))
+			{
+				return false;
+			}
+		}
+
+		if (VertexSix)
+		{
+			if (!(VertexSix->get_Building() == VertexData::Building::NONE))
+			{
+				return false;
+			}
+		}
+
+		return true;
+
+	}
+
+	return false;
+}
+
+

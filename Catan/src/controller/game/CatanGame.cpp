@@ -1,6 +1,6 @@
 #include "CatanGame.h"
 
-void CatanGame::handleEvent(CatanEvent catanEvent)
+void CatanGame::handleEvent(CatanEvent& catanEvent)
 {
 	CatanState* _state = state->handle(*this ,catanEvent);
 
@@ -38,6 +38,8 @@ bool CatanGame::build_settlement(PlayerId PlayerId, unsigned int q, unsigned int
 CatanGame::CatanGame(CatanBoard& _board, PlayerId _playerCount):board(_board),playerCount(_playerCount)
 {
 	this->turn = PlayerId::PLAYER_ONE;
+	this->state = new FirstTurnsState();
+	
 }
 
 //builds a road on a given edge: 'true' - the road was built, 'false' - the road was not built

@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "..\events\CatanEvent.h"
 #include "states/CatanState.h"
+#include "states/FirstTurnsState.h"
 #include <list>
 #include <map>
 #include <deque>
@@ -17,7 +18,7 @@ public:
 	CatanGame(CatanBoard& _board, PlayerId _playerCount); // 'turn' will always start at PLAYER_ONE, 'playerList' is determined according to..
 														  // 'PlayerCount' and 'state' always starts as a pointer to 'FirstTurnState' instance.
 
-	void handleEvent(CatanEvent event);
+	void handleEvent(CatanEvent& event);
 	PlayerId getPlayerCount();
 	PlayerId getturn();
 	void increment_turn();
