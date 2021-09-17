@@ -7,5 +7,5 @@ class CatanGame;
 class CatanState
 {
 public:
-	virtual CatanState* handle(CatanGame& catanGame, CatanEvent catanEvent) = 0;
+	virtual CatanState* handle(CatanGame& catanGame, CatanEvent& catanEvent) = 0;
 };

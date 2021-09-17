@@ -2,15 +2,19 @@
 
 #include "..\game\Player.h"
 
-enum Events : int {BUILD_SETTLEMENT, BUILD_ROAD, MOVE_ROBBER};
+enum class Events : int {BUILD_SETTLEMENT, BUILD_ROAD, MOVE_ROBBER};
 
 enum class Source : int {GUI, SERVER};
 
 class CatanEvent
 {
+
+// making sure that the constructor is called exclusively from derived classes of 'CatanEvent'
+protected:
+	CatanEvent(PlayerId _playerId, Events _eventType) :playerId(_playerId), eventType(_eventType) {};
+
 public:
 	PlayerId getPlayerId();
-	void setPlayerId(PlayerId playerId);
 	Events getEvent(); // No override methods allowed.
 
 private:
